@@ -26,7 +26,7 @@ namespace ListQueues
         static int Main(string[] args)
         {
             QueueHelper queueHelper = new QueueHelper();
-            foreach (CloudQueue queue in queueHelper.ListQueues())
+            foreach (string queue in queueHelper.ListQueues())
             {
                 Console.WriteLine(queue);
             }

@@ -21,6 +21,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.RetryPolicies;
 using Microsoft.WindowsAzure.Storage.Queue;
+using System.Linq;
 
 namespace Aws.AzureTools
 {
@@ -39,9 +40,9 @@ namespace Aws.AzureTools
             cloudQueueClient.RetryPolicy = new LinearRetry( TimeSpan.FromSeconds(3), Settings.RetryCount() );
         }
 
-        public IEnumerable<CloudQueue> ListQueues()
+        public IEnumerable<String> ListQueues()
         {
-            return cloudQueueClient.ListQueues();
+            return cloudQueueClient.ListQueues().Select( cq => cq.Name );
         }
     }
 }
